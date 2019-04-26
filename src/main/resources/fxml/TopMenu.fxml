@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.HBox?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mylibrary.controllers.TopMenuController">
+   <ToggleButton mnemonicParsing="false" onAction="#openLibrary" prefHeight="26.0" prefWidth="100.0" text="Library">
+      <toggleGroup>
+         <ToggleGroup fx:id="toggleButtons" />
+      </toggleGroup>
+   </ToggleButton>
+   <ToggleButton mnemonicParsing="false" onAction="#openBookList" prefWidth="100.0" text="Book List" toggleGroup="$toggleButtons" />
+   <ToggleButton mnemonicParsing="false" onAction="#openStatistics" prefWidth="100.0" text="Statistics" toggleGroup="$toggleButtons" />
+</HBox>
