@@ -1,14 +1,16 @@
 package com.mylibrary;
 
+import com.mylibrary.utils.FxmlUtils;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+
 import java.util.Locale;
-import java.util.ResourceBundle;
+import java.util.Objects;
 
 public class Main extends Application {
+
+    public static final String MAIN_FXML = "/fxml/Main.fxml";
 
     public static void main(String[] args) {
         launch(args);
@@ -17,12 +19,8 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("en"));
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Main.fxml"));
-        ResourceBundle bundle = ResourceBundle.getBundle("bundles.messages");
-        loader.setResources(bundle);
-        BorderPane borderPane = loader.load();
-        stage.setScene(new Scene(borderPane));
-        stage.setTitle(bundle.getString("title_application"));
+        stage.setScene(new Scene(Objects.requireNonNull(FxmlUtils.fxmlLoader(MAIN_FXML))));
+        stage.setTitle(FxmlUtils.getResourceBundle().getString("title_application"));
         stage.show();
     }
 }
