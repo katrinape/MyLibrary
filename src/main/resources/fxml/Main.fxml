@@ -1,21 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane fx:id="borderPane"
-            maxHeight="-Infinity"
-            maxWidth="-Infinity"
-            minHeight="-Infinity"
-            minWidth="-Infinity"
-            prefHeight="500.0"
-            prefWidth="600.0"
-            xmlns="http://javafx.com/javafx/8.0.172-ea"
-            xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.mylibrary.controllers.MainController">
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mylibrary.controllers.MainController">
    <top>
       <VBox BorderPane.alignment="CENTER">
-         <fx:include source="/fxml/TopMenu.fxml" fx:id="topMenu"/>
+         <MenuBar>
+            <Menu mnemonicParsing="false" text="%file">
+               <MenuItem mnemonicParsing="false" text="%close" onAction="#closeApp" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="%edit">
+               <RadioMenuItem mnemonicParsing="false" text="Caspian" onAction="#setCaspian">
+                  <toggleGroup>
+                     <ToggleGroup fx:id="styleGroup" />
+                  </toggleGroup>
+               </RadioMenuItem>
+               <RadioMenuItem mnemonicParsing="false" text="Modena" selected="true" onAction="#setModena" toggleGroup="$styleGroup" />
+               <SeparatorMenuItem mnemonicParsing="false" />
+               <CheckMenuItem mnemonicParsing="false" text="%always_on_top" onAction="#setAlwaysOnTop" />
+            </Menu>
+            <Menu mnemonicParsing="false" text="%help">
+               <MenuItem mnemonicParsing="false" text="%about" onAction="#showAbout" />
+            </Menu>
+         </MenuBar>
+         <fx:include fx:id="topMenu" source="/fxml/TopMenu.fxml" />
       </VBox>
    </top>
 </BorderPane>
