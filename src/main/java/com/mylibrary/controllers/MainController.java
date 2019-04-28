@@ -1,17 +1,20 @@
 package com.mylibrary.controllers;
 
+import com.mylibrary.dialogs.DialogUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckMenuItem;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 public class MainController {
@@ -44,8 +47,11 @@ public class MainController {
     }
 
     public void closeApp() {
-        Platform.exit();
-        System.exit(0);
+        Optional<ButtonType> result = DialogUtils.confirmationDialog();
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            Platform.exit();
+            System.exit(0);
+        }
     }
 
     public void setModena() {
@@ -63,5 +69,6 @@ public class MainController {
     }
 
     public void showAbout(ActionEvent actionEvent) {
+        DialogUtils.dialogAboutApp();
     }
 }
