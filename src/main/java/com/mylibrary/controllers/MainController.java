@@ -17,7 +17,7 @@ import java.util.Optional;
 public class MainController {
 
     @FXML
-    public ToggleGroup styleGroup;
+    private ToggleGroup styleGroup;
 
     @FXML
     private BorderPane borderPane;

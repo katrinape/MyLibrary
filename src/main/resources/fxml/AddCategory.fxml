@@ -14,9 +14,9 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
         </padding>
         <Label prefWidth="100.0" text="%add_category" />
-        <TextField prefWidth="100.0" />
-        <Button mnemonicParsing="false" prefWidth="100.0" text="%add_button" />
+        <TextField prefWidth="150.0" fx:id="categoryTextField"/>
+        <Button mnemonicParsing="false" prefWidth="100.0" text="%add_button" fx:id="addCategoryBtn" onAction="#addCategory"/>
         <Label prefWidth="150.0" text="%choose_category" />
-        <ComboBox prefWidth="150.0" />
+        <ComboBox prefWidth="150.0" fx:id="categoryComboBox"/>
     </HBox>
 </VBox>

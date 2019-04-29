@@ -14,7 +14,7 @@ public class TopMenuController {
     private MainController mainController;
 
     @FXML
-    public ToggleGroup toggleButtons;
+    private ToggleGroup toggleButtons;
 
     @FXML
     public void openLibrary() {

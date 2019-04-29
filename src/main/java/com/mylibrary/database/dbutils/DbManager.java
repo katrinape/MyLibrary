@@ -44,7 +44,7 @@ public class DbManager {
         return connectionSource;
     }
 
-    private static void closeConnectionSource() {
+    public static void closeConnectionSource() {
         if (connectionSource != null) {
             try {
                 connectionSource.close();

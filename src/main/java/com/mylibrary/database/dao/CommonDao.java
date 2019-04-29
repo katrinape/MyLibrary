@@ -23,7 +23,7 @@ public class CommonDao {
         this.connectionSource = DbManager.getConnectionSource();
     }
 
-    public <T extends BaseModel, I> void creatOrUpdate(BaseModel baseModel) throws ApplicationException {
+    public <T extends BaseModel, I> void createOrUpdate(BaseModel baseModel) throws ApplicationException {
         Dao<T, I> dao = getDao((Class<T>) baseModel.getClass());
         try {
             dao.createOrUpdate((T) baseModel);
