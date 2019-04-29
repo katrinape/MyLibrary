@@ -49,4 +49,19 @@
             </ImageView>
         </graphic>
     </ToggleButton>
+    <ToggleButton mnemonicParsing="false"
+                  onAction="#addCategory"
+                  prefWidth="150.0"
+                  prefHeight="40.0"
+                  text="%add_category"
+                  toggleGroup="$toggleButtons">
+        <graphic>
+            <ImageView fitHeight="30.0"
+                       fitWidth="50.0"
+                       pickOnBounds="true"
+                       preserveRatio="true">
+                <Image url="@../icons/category.png"/>
+            </ImageView>
+        </graphic>
+    </ToggleButton>
 </HBox>
