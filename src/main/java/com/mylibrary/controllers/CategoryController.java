@@ -2,6 +2,7 @@ package com.mylibrary.controllers;
 
 import com.mylibrary.modelFx.CategoryFx;
 import com.mylibrary.modelFx.CategoryModel;
+import com.mylibrary.utils.DialogUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -21,6 +22,9 @@ public class CategoryController {
     @FXML
     private Button deleteCategoryBtn;
 
+    @FXML
+    private Button editCategoryBtn;
+
     private CategoryModel categoryModel;
 
     @FXML
@@ -34,6 +38,7 @@ public class CategoryController {
     private void initBindings() {
         this.addCategoryBtn.disableProperty().bind(this.categoryTextField.textProperty().isEmpty());
         this.deleteCategoryBtn.disableProperty().bind(categoryModel.categoryProperty().isNull());
+        this.editCategoryBtn.disableProperty().bind(categoryModel.categoryProperty().isNull());
     }
 
     @FXML
@@ -49,5 +54,13 @@ public class CategoryController {
 
     public void onActionComboBox() {
         this.categoryModel.setCategory(this.categoryComboBox.getSelectionModel().getSelectedItem());
+    }
+
+    public void editCategory() {
+        String newCategoryName = DialogUtils.editDialog(categoryModel.getCategory().getName());
+        if (!newCategoryName.trim().isBlank()) {
+            this.categoryModel.getCategory().setName(newCategoryName);
+            this.categoryModel.updateCategory();
+        }
     }
 }

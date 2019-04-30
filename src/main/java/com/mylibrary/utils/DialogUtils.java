@@ -3,6 +3,7 @@ package com.mylibrary.utils;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
+import javafx.scene.control.TextInputDialog;
 
 import java.util.Optional;
 import java.util.ResourceBundle;
@@ -33,5 +34,14 @@ public class DialogUtils {
         TextArea textArea = new TextArea(error);
         errorAlert.getDialogPane().setContent(textArea);
         errorAlert.showAndWait();
+    }
+
+    public static String editDialog(String value) {
+        TextInputDialog dialog = new TextInputDialog(value);
+        dialog.setTitle(bundle.getString("edit_title"));
+        dialog.setHeaderText(bundle.getString("edit_header"));
+        dialog.setContentText("edit_content");
+        Optional<String> result = dialog.showAndWait();
+        return result.orElse(null);
     }
 }

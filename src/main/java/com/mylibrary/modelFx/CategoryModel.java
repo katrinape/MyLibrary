@@ -53,6 +53,18 @@ public class CategoryModel {
         }
     }
 
+    public void updateCategory() {
+        CategoryDao categoryDao = new CategoryDao();
+        try {
+            Category tempCategory = categoryDao.findById(Category.class, this.category.getValue().getId());
+            tempCategory.setName(getCategory().getName());
+            categoryDao.createOrUpdate(tempCategory);
+            init();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+    }
+
     public ObservableList<CategoryFx> getCategoryList() {
         return categoryList;
     }
