@@ -17,6 +17,7 @@
         <TextField prefWidth="150.0" fx:id="categoryTextField"/>
         <Button mnemonicParsing="false" prefWidth="100.0" text="%add_button" fx:id="addCategoryBtn" onAction="#addCategory"/>
         <Label prefWidth="150.0" text="%choose_category" />
-        <ComboBox prefWidth="150.0" fx:id="categoryComboBox"/>
+        <ComboBox prefWidth="150.0" fx:id="categoryComboBox" onAction="#onActionComboBox"/>
+        <Button mnemonicParsing="false" prefWidth="100.0" text="%delete_button" fx:id="deleteCategoryBtn" onAction="#deleteCategory"/>
     </HBox>
 </VBox>

@@ -18,21 +18,36 @@ public class CategoryController {
     @FXML
     private ComboBox<CategoryFx> categoryComboBox;
 
+    @FXML
+    private Button deleteCategoryBtn;
+
     private CategoryModel categoryModel;
 
     @FXML
     public void initialize() {
         this.categoryModel = new CategoryModel();
+        this.categoryModel.init();
+        this.categoryComboBox.setItems(this.categoryModel.getCategoryList());
         initBindings();
     }
 
     private void initBindings() {
-        addCategoryBtn.disableProperty().bind(categoryTextField.textProperty().isEmpty());
+        this.addCategoryBtn.disableProperty().bind(this.categoryTextField.textProperty().isEmpty());
+        this.deleteCategoryBtn.disableProperty().bind(categoryModel.categoryProperty().isNull());
     }
 
     @FXML
     public void addCategory() {
         categoryModel.saveCategory(categoryTextField.getText());
         categoryTextField.clear();
+    }
+
+    public void deleteCategory() {
+        this.categoryModel.deleteCategoryById();
+        this.categoryModel.init();
+    }
+
+    public void onActionComboBox() {
+        this.categoryModel.setCategory(this.categoryComboBox.getSelectionModel().getSelectedItem());
     }
 }
