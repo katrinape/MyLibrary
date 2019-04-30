@@ -3,6 +3,7 @@ package com.mylibrary.controllers;
 import com.mylibrary.modelFx.CategoryFx;
 import com.mylibrary.modelFx.CategoryModel;
 import com.mylibrary.utils.DialogUtils;
+import com.mylibrary.utils.exceptions.ApplicationException;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -30,7 +31,11 @@ public class CategoryController {
     @FXML
     public void initialize() {
         this.categoryModel = new CategoryModel();
-        this.categoryModel.init();
+        try {
+            this.categoryModel.init();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
         this.categoryComboBox.setItems(this.categoryModel.getCategoryList());
         initBindings();
     }
@@ -43,13 +48,20 @@ public class CategoryController {
 
     @FXML
     public void addCategory() {
-        categoryModel.saveCategory(categoryTextField.getText());
+        try {
+            categoryModel.saveCategory(categoryTextField.getText());
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
         categoryTextField.clear();
     }
 
     public void deleteCategory() {
-        this.categoryModel.deleteCategoryById();
-        this.categoryModel.init();
+        try {
+            this.categoryModel.deleteCategoryById();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
     }
 
     public void onActionComboBox() {
@@ -60,7 +72,11 @@ public class CategoryController {
         String newCategoryName = DialogUtils.editDialog(categoryModel.getCategory().getName());
         if (!newCategoryName.trim().isBlank()) {
             this.categoryModel.getCategory().setName(newCategoryName);
-            this.categoryModel.updateCategory();
+            try {
+                this.categoryModel.updateCategory();
+            } catch (ApplicationException e) {
+                DialogUtils.errorDialog(e.getMessage());
+            }
         }
     }
 }

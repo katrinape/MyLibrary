@@ -24,7 +24,7 @@ public class DbManager {
 
     public static void initDatabase() {
         createConnectionSource();
-//        dropTable();
+        dropTable();
         createTable();
         closeConnectionSource();
     }
@@ -44,7 +44,7 @@ public class DbManager {
         return connectionSource;
     }
 
-    public static void closeConnectionSource() {
+    private static void closeConnectionSource() {
         if (connectionSource != null) {
             try {
                 connectionSource.close();

@@ -2,7 +2,6 @@ package com.mylibrary.modelFx;
 
 import com.mylibrary.database.dao.CategoryDao;
 import com.mylibrary.database.models.Category;
-import com.mylibrary.utils.DialogUtils;
 import com.mylibrary.utils.exceptions.ApplicationException;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -16,53 +15,39 @@ public class CategoryModel {
     private ObservableList<CategoryFx> categoryList = FXCollections.observableArrayList();
     private ObjectProperty<CategoryFx> category = new SimpleObjectProperty<>();
 
-    public void init() {
+    public void init() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao();
         this.categoryList.clear();
-        try {
-            List<Category> categories = categoryDao.queryForAll(Category.class);
-            categories.forEach(c -> {
-                CategoryFx categoryFx = new CategoryFx();
-                categoryFx.setId(c.getId());
-                categoryFx.setName(c.getName());
-                this.categoryList.add(categoryFx);
-            });
-        } catch (ApplicationException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
+
+        List<Category> categories = categoryDao.queryForAll(Category.class);
+        categories.forEach(c -> {
+            CategoryFx categoryFx = new CategoryFx();
+            categoryFx.setId(c.getId());
+            categoryFx.setName(c.getName());
+            this.categoryList.add(categoryFx);
+        });
     }
 
-    public void deleteCategoryById() {
+    public void deleteCategoryById() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao();
-        try {
-            categoryDao.deleteById(Category.class, category.getValue().getId());
-        } catch (ApplicationException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
+        categoryDao.deleteById(Category.class, category.getValue().getId());
+        init();
     }
 
-    public void saveCategory(String name) {
+    public void saveCategory(String name) throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao();
         Category category = new Category();
         category.setName(name);
-        try {
-            categoryDao.createOrUpdate(category);
-            init();
-        } catch (ApplicationException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
+        categoryDao.createOrUpdate(category);
+        init();
     }
 
-    public void updateCategory() {
+    public void updateCategory() throws ApplicationException {
         CategoryDao categoryDao = new CategoryDao();
-        try {
-            Category tempCategory = categoryDao.findById(Category.class, this.category.getValue().getId());
-            tempCategory.setName(getCategory().getName());
-            categoryDao.createOrUpdate(tempCategory);
-            init();
-        } catch (ApplicationException e) {
-            DialogUtils.errorDialog(e.getMessage());
-        }
+        Category tempCategory = categoryDao.findById(Category.class, this.category.getValue().getId());
+        tempCategory.setName(getCategory().getName());
+        categoryDao.createOrUpdate(tempCategory);
+        init();
     }
 
     public ObservableList<CategoryFx> getCategoryList() {
