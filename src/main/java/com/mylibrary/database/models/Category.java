@@ -1,6 +1,8 @@
 package com.mylibrary.database.models;
 
+import com.j256.ormlite.dao.ForeignCollection;
 import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 @DatabaseTable(tableName = "CATEGORIES")
@@ -14,6 +16,9 @@ public class Category implements BaseModel {
 
     @DatabaseField(columnName = "NAME", canBeNull = false, unique = true)
     private String name;
+
+    @ForeignCollectionField(columnName = "BOOK_ID")
+    private ForeignCollection<Book> books;
 
     public int getId() {
         return id;
@@ -29,5 +34,13 @@ public class Category implements BaseModel {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public ForeignCollection<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(ForeignCollection<Book> books) {
+        this.books = books;
     }
 }

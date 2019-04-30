@@ -37,6 +37,9 @@ public class Book implements BaseModel {
     @DatabaseField(columnName = "ADDED_DATE")
     private Date addedDate;
 
+    @DatabaseField(columnName = "DESCRIPTION")
+    private String description;
+
     public int getId() {
         return id;
     }
@@ -99,5 +102,13 @@ public class Book implements BaseModel {
 
     public void setAddedDate(Date addedDate) {
         this.addedDate = addedDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

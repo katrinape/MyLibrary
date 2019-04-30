@@ -1,6 +1,7 @@
 package com.mylibrary;
 
 import com.mylibrary.database.dbutils.DbManager;
+import com.mylibrary.utils.FillDatabase;
 import com.mylibrary.utils.FxmlUtils;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -25,5 +26,6 @@ public class Main extends Application {
         stage.show();
 
         DbManager.initDatabase();
+        FillDatabase.fillDatabase();
     }
 }
