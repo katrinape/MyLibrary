@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.TextFieldTableCell;
 
 public class AuthorController {
 
@@ -43,9 +44,17 @@ public class AuthorController {
         this.authorModel.authorFxObjectProperty().get().surnameProperty().bind(this.surnameTextField.textProperty());
         this.addButton.disableProperty().bind(this.nameTextField.textProperty().isEmpty()
                 .or(this.surnameTextField.textProperty().isEmpty()));
+
         this.authorTableView.setItems(authorModel.getAuthorFxObservableList());
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         this.surnameColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
+
+        this.nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        this.surnameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+
+        this.authorTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            this.authorModel.setAuthorFxObjectPropertyEdit(newValue);
+        });
     }
 
     @FXML
@@ -57,5 +66,25 @@ public class AuthorController {
         }
         this.nameTextField.clear();
         this.surnameTextField.clear();
+    }
+
+    @FXML
+    public void editName(TableColumn.CellEditEvent<AuthorFx, String> authorFxStringCellEditEvent) {
+        this.authorModel.getAuthorFxObjectPropertyEdit().setName(authorFxStringCellEditEvent.getNewValue());
+        updateAuthor();
+    }
+
+    @FXML
+    public void editSurname(TableColumn.CellEditEvent<AuthorFx, String> authorFxStringCellEditEvent) {
+        this.authorModel.getAuthorFxObjectPropertyEdit().setSurname(authorFxStringCellEditEvent.getNewValue());
+        updateAuthor();
+    }
+
+    private void updateAuthor() {
+        try {
+            this.authorModel.saveAuthorEdit();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
     }
 }
