@@ -25,6 +25,9 @@ public class Book implements BaseModel {
     @DatabaseField(columnName = "TITLE", canBeNull = false)
     private String title;
 
+    @DatabaseField(columnName = "DESCRIPTION")
+    private String description;
+
     @DatabaseField(columnName = "RELEASE_DATE")
     private Date releaseDate;
 
@@ -36,9 +39,6 @@ public class Book implements BaseModel {
 
     @DatabaseField(columnName = "ADDED_DATE")
     private Date addedDate;
-
-    @DatabaseField(columnName = "DESCRIPTION")
-    private String description;
 
     public int getId() {
         return id;

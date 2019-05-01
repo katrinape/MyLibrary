@@ -1,7 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <Label layoutX="189.0" layoutY="144.0" text="Add book"/>
-</AnchorPane>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane hgap="10.0" maxHeight="500.0" minHeight="300.0" vgap="10.0"
+          xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.mylibrary.controllers.BookController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0"/>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="500.0"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints prefHeight="30.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+        <RowConstraints minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES"/>
+    </rowConstraints>
+    <children>
+        <Label text="%book.category"/>
+        <Label text="%book.author" GridPane.rowIndex="1"/>
+        <Label text="%book.desc" GridPane.rowIndex="2"/>
+        <Label text="%book.rating" GridPane.rowIndex="3"/>
+        <Label text="%book.isbn" GridPane.rowIndex="4"/>
+        <Label text="%book.release" GridPane.rowIndex="5"/>
+        <ComboBox prefWidth="200.0" GridPane.columnIndex="1"/>
+        <ComboBox prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+        <Slider blockIncrement="1.0" majorTickUnit="1.0" max="5.0" min="1.0" minorTickCount="0" showTickLabels="true"
+                showTickMarks="true" snapToTicks="true" value="1.0" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
+        <TextField GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="5"/>
+    </children>
+    <opaqueInsets>
+        <Insets/>
+    </opaqueInsets>
+    <padding>
+        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+    </padding>
+</GridPane>

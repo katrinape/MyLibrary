@@ -13,9 +13,9 @@
         </toggleGroup>
     </ToggleButton>
 
-    <ToggleButton mnemonicParsing="false" onAction="#openBookList" prefHeight="40.0" prefWidth="150.0" text="%list.books" toggleGroup="$toggleButtons" />
+    <ToggleButton mnemonicParsing="false" onAction="#openBookList" prefHeight="40.0" prefWidth="150.0" text="%book.list" toggleGroup="$toggleButtons" />
     <ToggleButton mnemonicParsing="false" onAction="#openStatistics" prefHeight="40.0" prefWidth="150.0" text="%stats" toggleGroup="$toggleButtons" />
-    <ToggleButton mnemonicParsing="false" onAction="#addBook" prefHeight="40.0" prefWidth="150.0" text="%add.book" toggleGroup="$toggleButtons">
+    <ToggleButton mnemonicParsing="false" onAction="#addBook" prefHeight="40.0" prefWidth="150.0" text="%book.add" toggleGroup="$toggleButtons">
         <graphic>
             <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../icons/add_book.png" />
@@ -23,7 +23,7 @@
         </graphic>
     </ToggleButton>
 
-    <ToggleButton mnemonicParsing="false" onAction="#addCategory" prefHeight="40.0" prefWidth="150.0" text="%add.category" toggleGroup="$toggleButtons">
+    <ToggleButton mnemonicParsing="false" onAction="#addCategory" prefHeight="40.0" prefWidth="150.0" text="%category.add" toggleGroup="$toggleButtons">
         <graphic>
             <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../icons/category.png" />
