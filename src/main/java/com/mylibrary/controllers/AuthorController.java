@@ -4,11 +4,9 @@ import com.mylibrary.modelFx.AuthorFx;
 import com.mylibrary.modelFx.AuthorModel;
 import com.mylibrary.utils.DialogUtils;
 import com.mylibrary.utils.exceptions.ApplicationException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
 
 public class AuthorController {
@@ -31,6 +29,9 @@ public class AuthorController {
     @FXML
     private TableColumn<AuthorFx, String> surnameColumn;
 
+    @FXML
+    private MenuItem deleteMenuItem;
+
     private AuthorModel authorModel;
 
     public void initialize() {
@@ -45,6 +46,10 @@ public class AuthorController {
         this.addButton.disableProperty().bind(this.nameTextField.textProperty().isEmpty()
                 .or(this.surnameTextField.textProperty().isEmpty()));
 
+        bindTableView();
+    }
+
+    private void bindTableView() {
         this.authorTableView.setItems(authorModel.getAuthorFxObservableList());
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().nameProperty());
         this.surnameColumn.setCellValueFactory(cellData -> cellData.getValue().surnameProperty());
@@ -52,9 +57,9 @@ public class AuthorController {
         this.nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         this.surnameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        this.authorTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            this.authorModel.setAuthorFxObjectPropertyEdit(newValue);
-        });
+        this.authorTableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) ->
+                this.authorModel.setAuthorFxObjectPropertyEdit(newValue));
+        this.deleteMenuItem.disableProperty().bind(this.authorTableView.getSelectionModel().selectedItemProperty().isNull());
     }
 
     @FXML
@@ -83,6 +88,14 @@ public class AuthorController {
     private void updateAuthor() {
         try {
             this.authorModel.saveAuthorEdit();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+    }
+
+    public void deleteAuthor(ActionEvent actionEvent) {
+        try {
+            this.authorModel.deleteAuthor();
         } catch (ApplicationException e) {
             DialogUtils.errorDialog(e.getMessage());
         }

@@ -32,11 +32,17 @@ public class AuthorModel {
     private void saveOrUpdate(AuthorFx authorFxObject) throws ApplicationException {
         AuthorDao authorDao = new AuthorDao();
         authorDao.createOrUpdate(AuthorConverter.convertAuthorFxToAuthor(authorFxObject));
-        init();
+        this.init();
     }
 
     public void saveAuthorEdit() throws ApplicationException {
         saveOrUpdate(this.getAuthorFxObjectPropertyEdit());
+    }
+
+    public void deleteAuthor() throws ApplicationException {
+        AuthorDao authorDao = new AuthorDao();
+        authorDao.deleteById(Author.class, this.getAuthorFxObjectPropertyEdit().getId());
+        this.init();
     }
 
     public AuthorFx getAuthorFxObject() {
