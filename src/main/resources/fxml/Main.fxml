@@ -25,7 +25,7 @@
                </RadioMenuItem>
                <RadioMenuItem mnemonicParsing="false" text="Modena" selected="true" onAction="#setModena" toggleGroup="$styleGroup" />
                <SeparatorMenuItem mnemonicParsing="false" />
-               <CheckMenuItem mnemonicParsing="false" text="%always_on_top" onAction="#setAlwaysOnTop" />
+               <CheckMenuItem mnemonicParsing="false" text="%always.on.top" onAction="#setAlwaysOnTop" />
             </Menu>
             <Menu mnemonicParsing="false" text="%help">
                <MenuItem mnemonicParsing="false" text="%about" onAction="#showAbout" />

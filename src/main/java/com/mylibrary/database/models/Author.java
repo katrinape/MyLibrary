@@ -8,19 +8,16 @@ import com.j256.ormlite.table.DatabaseTable;
 @DatabaseTable(tableName = "AUTHORS")
 public class Author implements BaseModel {
 
-    public static final String AUTHOR_ID = "AUTHOR_ID";
-    public static final String CATEGORY_ID = "CATEGORY_ID";
-
     public Author() {
     }
 
     @DatabaseField(generatedId = true)
     private int id;
 
-    @DatabaseField(columnName = "NAME", canBeNull = false)
+    @DatabaseField(columnName = "NAME", canBeNull = false, unique = true)
     private String name;
 
-    @DatabaseField(columnName = "SURNAME", canBeNull = false)
+    @DatabaseField(columnName = "SURNAME", canBeNull = false, unique = true)
     private String surname;
 
     @ForeignCollectionField(eager = true)

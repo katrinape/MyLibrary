@@ -22,7 +22,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         Locale.setDefault(new Locale("en"));
         stage.setScene(new Scene(Objects.requireNonNull(FxmlUtils.fxmlLoader(MAIN_FXML))));
-        stage.setTitle(FxmlUtils.getResourceBundle().getString("title_application"));
+        stage.setTitle(FxmlUtils.getResourceBundle().getString("title.application"));
         stage.show();
 
         DbManager.initDatabase();

@@ -4,64 +4,38 @@
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.FlowPane?>
 
-<HBox maxHeight="-Infinity"
-      maxWidth="-Infinity"
-      minHeight="-Infinity"
-      minWidth="-Infinity"
-      xmlns="http://javafx.com/javafx/8.0.172-ea"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="com.mylibrary.controllers.TopMenuController">
-    <ToggleButton mnemonicParsing="false"
-                  onAction="#openLibrary"
-                  prefWidth="150.0"
-                  prefHeight="40.0"
-                  text="%library">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWrapLength="500.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mylibrary.controllers.TopMenuController">
+    <ToggleButton mnemonicParsing="false" onAction="#openLibrary" prefHeight="40.0" prefWidth="150.0" text="%library">
         <toggleGroup>
-            <ToggleGroup fx:id="toggleButtons"/>
+            <ToggleGroup fx:id="toggleButtons" />
         </toggleGroup>
     </ToggleButton>
-    <ToggleButton mnemonicParsing="false"
-                  onAction="#openBookList"
-                  prefWidth="150.0"
-                  prefHeight="40.0"
-                  text="%list_books"
-                  toggleGroup="$toggleButtons"/>
-    <ToggleButton mnemonicParsing="false"
-                  onAction="#openStatistics"
-                  prefWidth="150.0"
-                  prefHeight="40.0"
-                  text="%stats"
-                  toggleGroup="$toggleButtons"/>
-    <ToggleButton mnemonicParsing="false"
-                  onAction="#addBook"
-                  prefWidth="150.0"
-                  prefHeight="40.0"
-                  text="%add_book"
-                  toggleGroup="$toggleButtons">
+
+    <ToggleButton mnemonicParsing="false" onAction="#openBookList" prefHeight="40.0" prefWidth="150.0" text="%list.books" toggleGroup="$toggleButtons" />
+    <ToggleButton mnemonicParsing="false" onAction="#openStatistics" prefHeight="40.0" prefWidth="150.0" text="%stats" toggleGroup="$toggleButtons" />
+    <ToggleButton mnemonicParsing="false" onAction="#addBook" prefHeight="40.0" prefWidth="150.0" text="%add.book" toggleGroup="$toggleButtons">
         <graphic>
-            <ImageView fitHeight="30.0"
-                       fitWidth="50.0"
-                       pickOnBounds="true"
-                       preserveRatio="true">
-                <Image url="@../icons/add_book.png"/>
+            <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../icons/add_book.png" />
             </ImageView>
         </graphic>
     </ToggleButton>
-    <ToggleButton mnemonicParsing="false"
-                  onAction="#addCategory"
-                  prefWidth="150.0"
-                  prefHeight="40.0"
-                  text="%add_category"
-                  toggleGroup="$toggleButtons">
+
+    <ToggleButton mnemonicParsing="false" onAction="#addCategory" prefHeight="40.0" prefWidth="150.0" text="%add.category" toggleGroup="$toggleButtons">
         <graphic>
-            <ImageView fitHeight="30.0"
-                       fitWidth="50.0"
-                       pickOnBounds="true"
-                       preserveRatio="true">
-                <Image url="@../icons/category.png"/>
+            <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../icons/category.png" />
             </ImageView>
         </graphic>
     </ToggleButton>
-</HBox>
+
+    <ToggleButton mnemonicParsing="false" onAction="#addAuthor" prefHeight="40.0" prefWidth="150.0" text="%author.add" toggleGroup="$toggleButtons">
+        <graphic>
+            <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../icons/author.png" />
+            </ImageView>
+        </graphic>
+    </ToggleButton>
+</FlowPane>
