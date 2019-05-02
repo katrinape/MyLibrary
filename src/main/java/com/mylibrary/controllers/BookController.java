@@ -12,25 +12,18 @@ public class BookController {
 
     @FXML
     private ComboBox<CategoryFx> categoryComboBox;
-
     @FXML
     private ComboBox<AuthorFx> authorComboBox;
-
     @FXML
     private TextField titleTextField;
-
     @FXML
     private TextArea descTextArea;
-
     @FXML
     private Slider ratingSlider;
-
     @FXML
     private TextField isbnTextField;
-
     @FXML
     private DatePicker releaseDatePicker;
-
     @FXML
     private Button addButton;
 

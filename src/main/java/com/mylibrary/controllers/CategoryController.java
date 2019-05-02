@@ -14,19 +14,14 @@ public class CategoryController {
 
     @FXML
     private TextField categoryTextField;
-
     @FXML
     private Button addCategoryBtn;
-
     @FXML
     private Button deleteCategoryBtn;
-
     @FXML
     private Button editCategoryBtn;
-
     @FXML
     private ComboBox<CategoryFx> categoryComboBox;
-
     @FXML
     private TreeView<String> categoryTreeView;
 

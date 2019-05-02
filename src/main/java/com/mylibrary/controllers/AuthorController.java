@@ -13,22 +13,16 @@ public class AuthorController {
 
     @FXML
     private TextField nameTextField;
-
     @FXML
     private TextField surnameTextField;
-
     @FXML
     private Button addButton;
-
     @FXML
     private TableView<AuthorFx> authorTableView;
-
     @FXML
     private TableColumn<AuthorFx, String> nameColumn;
-
     @FXML
     private TableColumn<AuthorFx, String> surnameColumn;
-
     @FXML
     private MenuItem deleteMenuItem;
 

@@ -18,10 +18,8 @@ public class MainController {
 
     @FXML
     private ToggleGroup styleGroup;
-
     @FXML
     private BorderPane borderPane;
-
     @FXML
     private TopMenuController topMenuController;
 
@@ -30,7 +28,7 @@ public class MainController {
         topMenuController.setMainController(this);
     }
 
-    public void setCenter(String fxmlPath) {
+    void setCenter(String fxmlPath) {
         borderPane.setCenter(FxmlUtils.fxmlLoader(fxmlPath));
     }
 
