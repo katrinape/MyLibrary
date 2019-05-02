@@ -2,6 +2,8 @@ package com.mylibrary.modelFx;
 
 import javafx.beans.property.*;
 
+import java.time.LocalDate;
+
 public class BookFx {
 
     private IntegerProperty id = new SimpleIntegerProperty();
@@ -9,10 +11,10 @@ public class BookFx {
     private ObjectProperty<AuthorFx> authorFx = new SimpleObjectProperty<>();
     private SimpleStringProperty title = new SimpleStringProperty();
     private SimpleStringProperty description = new SimpleStringProperty();
-    private SimpleStringProperty releaseDate = new SimpleStringProperty();
-    private SimpleLongProperty isbn = new SimpleLongProperty();
+    private ObjectProperty<LocalDate> releaseDate = new SimpleObjectProperty<>();
+    private SimpleStringProperty isbn = new SimpleStringProperty();
     private SimpleIntegerProperty rating = new SimpleIntegerProperty();
-    private SimpleStringProperty addedDate = new SimpleStringProperty();
+    private ObjectProperty<LocalDate> addedDate = new SimpleObjectProperty<>();
 
     public int getId() {
         return id.get();
@@ -74,27 +76,27 @@ public class BookFx {
         this.description.set(description);
     }
 
-    public String getReleaseDate() {
+    public LocalDate getReleaseDate() {
         return releaseDate.get();
     }
 
-    public SimpleStringProperty releaseDateProperty() {
+    public ObjectProperty<LocalDate> releaseDateProperty() {
         return releaseDate;
     }
 
-    public void setReleaseDate(String releaseDate) {
+    public void setReleaseDate(LocalDate releaseDate) {
         this.releaseDate.set(releaseDate);
     }
 
-    public long getIsbn() {
+    public String getIsbn() {
         return isbn.get();
     }
 
-    public SimpleLongProperty isbnProperty() {
+    public SimpleStringProperty isbnProperty() {
         return isbn;
     }
 
-    public void setIsbn(long isbn) {
+    public void setIsbn(String isbn) {
         this.isbn.set(isbn);
     }
 
@@ -110,15 +112,30 @@ public class BookFx {
         this.rating.set(rating);
     }
 
-    public String getAddedDate() {
+    public LocalDate getAddedDate() {
         return addedDate.get();
     }
 
-    public SimpleStringProperty addedDateProperty() {
+    public ObjectProperty<LocalDate> addedDateProperty() {
         return addedDate;
     }
 
-    public void setAddedDate(String addedDate) {
+    public void setAddedDate(LocalDate addedDate) {
         this.addedDate.set(addedDate);
+    }
+
+    @Override
+    public String toString() {
+        return "BookFx{" +
+                "id=" + id.get() +
+                ", categoryFx=" + categoryFx.get() +
+                ", authorFx=" + authorFx.get() +
+                ", title=" + title.get() +
+                ", description=" + description.get() +
+                ", releaseDate=" + releaseDate.get() +
+                ", isbn=" + isbn.get() +
+                ", rating=" + rating.get() +
+                ", addedDate=" + addedDate.get() +
+                '}';
     }
 }

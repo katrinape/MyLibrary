@@ -1,4 +1,69 @@
 package com.mylibrary.controllers;
 
+import com.mylibrary.modelFx.AuthorFx;
+import com.mylibrary.modelFx.BookModel;
+import com.mylibrary.modelFx.CategoryFx;
+import com.mylibrary.utils.DialogUtils;
+import com.mylibrary.utils.exceptions.ApplicationException;
+import javafx.fxml.FXML;
+import javafx.scene.control.*;
+
 public class BookController {
+
+    @FXML
+    private ComboBox<CategoryFx> categoryComboBox;
+
+    @FXML
+    private ComboBox<AuthorFx> authorComboBox;
+
+    @FXML
+    private TextField titleTextField;
+
+    @FXML
+    private TextArea descTextArea;
+
+    @FXML
+    private Slider ratingSlider;
+
+    @FXML
+    private TextField isbnTextField;
+
+    @FXML
+    private DatePicker releaseDatePicker;
+
+    @FXML
+    private Button addButton;
+
+    private BookModel bookModel;
+
+    public void initialize() {
+        this.bookModel = new BookModel();
+        try {
+            this.bookModel.init();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+        initBindings();
+    }
+
+    private void initBindings() {
+        this.categoryComboBox.setItems(this.bookModel.getCategoryFxObservableList());
+        this.authorComboBox.setItems(this.bookModel.getAuthorFxObservableList());
+
+        this.bookModel.getBookFxObjectProperty().categoryFxProperty().bind(this.categoryComboBox.valueProperty());
+        this.bookModel.getBookFxObjectProperty().authorFxProperty().bind(this.authorComboBox.valueProperty());
+        this.bookModel.getBookFxObjectProperty().titleProperty().bind(this.titleTextField.textProperty());
+        this.bookModel.getBookFxObjectProperty().descriptionProperty().bind(this.descTextArea.textProperty());
+        this.bookModel.getBookFxObjectProperty().ratingProperty().bind(this.ratingSlider.valueProperty());
+        this.bookModel.getBookFxObjectProperty().isbnProperty().bind(this.isbnTextField.textProperty());
+        this.bookModel.getBookFxObjectProperty().releaseDateProperty().bind(this.releaseDatePicker.valueProperty());
+
+        this.addButton.disableProperty().bind(this.titleTextField.textProperty().isEmpty().or(
+                this.bookModel.getBookFxObjectProperty().categoryFxProperty().isNull().or(
+                        this.bookModel.getBookFxObjectProperty().authorFxProperty().isNull())));
+    }
+
+    public void addBook() {
+        System.out.println(this.bookModel.getBookFxObjectProperty().toString());
+    }
 }
