@@ -19,15 +19,15 @@
         <Label prefWidth="100.0" text="%book.author" alignment="BASELINE_RIGHT"/>
         <ComboBox prefWidth="200.0"/>
     </HBox>
-    <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+    <TableView maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" fx:id="bookTableView">
         <columns>
-            <TableColumn prefWidth="75.0" text="%book.title"/>
-            <TableColumn prefWidth="75.0" text="%book.desc"/>
-            <TableColumn prefWidth="75.0" text="%book.author"/>
-            <TableColumn prefWidth="75.0" text="%book.category"/>
-            <TableColumn prefWidth="75.0" text="%book.rating"/>
-            <TableColumn prefWidth="75.0" text="%book.isbn"/>
-            <TableColumn prefWidth="75.0" text="%book.release"/>
+            <TableColumn prefWidth="75.0" text="%book.title" fx:id="titleColumn"/>
+            <TableColumn prefWidth="75.0" text="%book.desc" fx:id="descColumn"/>
+            <TableColumn prefWidth="75.0" text="%book.author" fx:id="authorColumn"/>
+            <TableColumn prefWidth="75.0" text="%book.category" fx:id="categoryColumn"/>
+            <TableColumn prefWidth="75.0" text="%book.rating" fx:id="ratingColumn"/>
+            <TableColumn prefWidth="75.0" text="%book.isbn" fx:id="isbnColumn"/>
+            <TableColumn prefWidth="75.0" text="%book.release" fx:id="releaseColumn"/>
         </columns>
         <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>

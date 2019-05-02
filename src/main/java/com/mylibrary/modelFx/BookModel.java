@@ -39,11 +39,11 @@ public class BookModel {
         AuthorDao authorDao = new AuthorDao();
         List<Author> authors = authorDao.queryForAll(Author.class);
         authorFxObservableList.clear();
-        authors.forEach(author -> authorFxObservableList.add(AuthorConverter.convertAuthorToAuthorFx(author)));
+        authors.forEach(author -> authorFxObservableList.add(AuthorConverter.convertToAuthorFx(author)));
     }
 
     public void saveBook() throws ApplicationException {
-        Book book = BookConverter.convertBookFxToBook(this.getBookFxObjectProperty());
+        Book book = BookConverter.convertToBook(this.getBookFxObjectProperty());
 
         CategoryDao categoryDao = new CategoryDao();
         Category category = categoryDao.findById(Category.class, this.getBookFxObjectProperty().getCategoryFx().getId());

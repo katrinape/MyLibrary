@@ -22,7 +22,7 @@ public class AuthorModel {
         AuthorDao authorDao = new AuthorDao();
         this.authorFxObservableList.clear();
         List<Author> authors = authorDao.queryForAll(Author.class);
-        authors.forEach(a -> authorFxObservableList.add(AuthorConverter.convertAuthorToAuthorFx(a)));
+        authors.forEach(a -> authorFxObservableList.add(AuthorConverter.convertToAuthorFx(a)));
     }
 
     public void saveAuthor() throws ApplicationException {
@@ -31,7 +31,7 @@ public class AuthorModel {
 
     private void saveOrUpdate(AuthorFx authorFxObject) throws ApplicationException {
         AuthorDao authorDao = new AuthorDao();
-        authorDao.createOrUpdate(AuthorConverter.convertAuthorFxToAuthor(authorFxObject));
+        authorDao.createOrUpdate(AuthorConverter.convertToAuthor(authorFxObject));
         this.init();
     }
 

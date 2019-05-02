@@ -6,7 +6,7 @@ import com.mylibrary.utils.Utils;
 
 public class BookConverter {
 
-    public static Book convertBookFxToBook(BookFx bookFx) {
+    public static Book convertToBook(BookFx bookFx) {
         Book book = new Book();
         book.setId(bookFx.getId());
         book.setTitle(bookFx.getTitle());
@@ -16,5 +16,18 @@ public class BookConverter {
         book.setReleaseDate(Utils.convertToDate(bookFx.getReleaseDate()));
         book.setAddedDate(Utils.convertToDate(bookFx.getAddedDate()));
         return book;
+    }
+
+    public static BookFx convertToBookFx(Book book) {
+        BookFx bookFx = new BookFx();
+        bookFx.setId(book.getId());
+        bookFx.setTitle(book.getTitle());
+        bookFx.setIsbn(book.getIsbn());
+        bookFx.setRating(book.getRating());
+        bookFx.setDescription(book.getDescription());
+        bookFx.setReleaseDate(Utils.convertToLocalDate(book.getReleaseDate()));
+        bookFx.setAuthorFx(AuthorConverter.convertToAuthorFx(book.getAuthor()));
+        bookFx.setCategoryFx(CategoryConverter.convertToCategoryFx(book.getCategory()));
+        return bookFx;
     }
 }
