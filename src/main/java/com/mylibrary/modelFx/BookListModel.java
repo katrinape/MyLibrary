@@ -34,8 +34,9 @@ public class BookListModel {
     public void init() throws ApplicationException {
         BookDao bookDao = new BookDao();
         List<Book> books = bookDao.queryForAll(Book.class);
+        this.bookFxList.clear();
         books.forEach(book -> this.bookFxList.add(BookConverter.convertToBookFx(book)));
-        this.bookFxObservableList.addAll(this.bookFxList);
+        this.bookFxObservableList.setAll(this.bookFxList);
         initAuthors();
         initCategories();
     }
@@ -50,6 +51,12 @@ public class BookListModel {
         } else {
             this.bookFxObservableList.setAll(this.bookFxList);
         }
+    }
+
+    public void deleteBook(BookFx item) throws ApplicationException {
+        BookDao bookDao = new BookDao();
+        bookDao.deleteById(Book.class, item.getId());
+        this.init();
     }
 
     private void initAuthors() throws ApplicationException {

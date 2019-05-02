@@ -6,15 +6,16 @@ import com.mylibrary.modelFx.BookListModel;
 import com.mylibrary.modelFx.CategoryFx;
 import com.mylibrary.utils.DialogUtils;
 import com.mylibrary.utils.exceptions.ApplicationException;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.time.LocalDate;
 
 public class BookListController {
-    
+
     @FXML
     private ComboBox<CategoryFx> categoryComboBox;
     @FXML
@@ -24,7 +25,7 @@ public class BookListController {
     @FXML
     private TableColumn<BookFx, String> titleColumn;
     @FXML
-    private TableColumn<BookFx, String > descColumn;
+    private TableColumn<BookFx, String> descColumn;
     @FXML
     private TableColumn<BookFx, AuthorFx> authorColumn;
     @FXML
@@ -35,6 +36,8 @@ public class BookListController {
     private TableColumn<BookFx, String> isbnColumn;
     @FXML
     private TableColumn<BookFx, LocalDate> releaseColumn;
+    @FXML
+    public TableColumn<BookFx, BookFx> deleteColumn;
 
     private BookListModel bookListModel;
 
@@ -65,6 +68,33 @@ public class BookListController {
         this.ratingColumn.setCellValueFactory(cellData -> cellData.getValue().ratingProperty());
         this.isbnColumn.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
         this.releaseColumn.setCellValueFactory(cellData -> cellData.getValue().releaseDateProperty());
+        this.deleteColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
+
+        this.deleteColumn.setCellFactory(param -> new TableCell<>() {
+            Button button = createDeleteButton();
+            @Override
+            protected void updateItem(BookFx item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(button);
+                    button.setOnAction(actionEvent -> {
+                        try {
+                            bookListModel.deleteBook(item);
+                        } catch (ApplicationException e) {
+                            DialogUtils.errorDialog(e.getMessage());
+                        }
+                    });
+                }
+            }
+        });
+    }
+
+    private Button createDeleteButton() {
+        Button button = new Button();
+        button.setGraphic(new ImageView(new Image(this.getClass().getResource("/icons/delete.png").toString())));
+        return button;
     }
 
     public void filter() {

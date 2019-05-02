@@ -31,6 +31,7 @@
             <TableColumn fx:id="ratingColumn" prefWidth="75.0" text="%book.rating"/>
             <TableColumn fx:id="isbnColumn" prefWidth="75.0" text="%book.isbn"/>
             <TableColumn fx:id="releaseColumn" prefWidth="75.0" text="%book.release"/>
+            <TableColumn fx:id="deleteColumn" prefWidth="75.0" text="%delete.button"/>
         </columns>
         <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/>
