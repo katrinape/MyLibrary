@@ -13,20 +13,23 @@
       fx:controller="com.mylibrary.controllers.CategoryController">
     <HBox alignment="BASELINE_LEFT" spacing="10.0">
         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </padding>
-        <Label prefWidth="150.0" text="%category.add" />
-        <TextField fx:id="categoryTextField" prefWidth="200.0" />
-        <Button fx:id="addCategoryBtn" mnemonicParsing="false" onAction="#addCategory" prefWidth="100.0" text="%add.button" />
+        <Label prefWidth="150.0" text="%category.add" alignment="BASELINE_RIGHT"/>
+        <TextField fx:id="categoryTextField" prefWidth="200.0"/>
+        <Button fx:id="addCategoryBtn" mnemonicParsing="false" onAction="#addCategory" prefWidth="100.0"
+                text="%add.button"/>
     </HBox>
     <HBox alignment="BASELINE_LEFT" spacing="10.0">
         <padding>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
         </padding>
-        <Label prefWidth="150.0" text="%choose.category" />
-        <ComboBox fx:id="categoryComboBox" onAction="#onActionComboBox" prefWidth="200.0" />
-        <Button fx:id="editCategoryBtn" mnemonicParsing="false" onAction="#editCategory" prefWidth="100.0" text="%edit.button" />
-        <Button fx:id="deleteCategoryBtn" mnemonicParsing="false" onAction="#deleteCategory" prefWidth="100.0" text="%delete.button" />
+        <Label prefWidth="150.0" text="%choose.category" alignment="BASELINE_RIGHT"/>
+        <ComboBox fx:id="categoryComboBox" onAction="#onActionComboBox" prefWidth="200.0"/>
+        <Button fx:id="editCategoryBtn" mnemonicParsing="false" onAction="#editCategory" prefWidth="100.0"
+                text="%edit.button"/>
+        <Button fx:id="deleteCategoryBtn" mnemonicParsing="false" onAction="#deleteCategory" prefWidth="100.0"
+                text="%delete.button"/>
     </HBox>
-   <TreeView fx:id="categoryTreeView" prefWidth="200.0" showRoot="false" />
+    <TreeView fx:id="categoryTreeView" prefWidth="200.0" showRoot="false"/>
 </VBox>
