@@ -11,4 +11,11 @@ public class CategoryConverter {
         categoryFx.setName(category.getName());
         return categoryFx;
     }
+
+    public static Category convertCategoryFxToCategory(CategoryFx categoryFx) {
+        Category category = new Category();
+        category.setId(categoryFx.getId());
+        category.setName(categoryFx.getName());
+        return category;
+    }
 }

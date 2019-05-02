@@ -1,10 +1,13 @@
 package com.mylibrary.modelFx;
 
 import com.mylibrary.database.dao.AuthorDao;
+import com.mylibrary.database.dao.BookDao;
 import com.mylibrary.database.dao.CategoryDao;
 import com.mylibrary.database.models.Author;
+import com.mylibrary.database.models.Book;
 import com.mylibrary.database.models.Category;
 import com.mylibrary.utils.converters.AuthorConverter;
+import com.mylibrary.utils.converters.BookConverter;
 import com.mylibrary.utils.converters.CategoryConverter;
 import com.mylibrary.utils.exceptions.ApplicationException;
 import javafx.beans.property.ObjectProperty;
@@ -37,6 +40,21 @@ public class BookModel {
         List<Author> authors = authorDao.queryForAll(Author.class);
         authorFxObservableList.clear();
         authors.forEach(author -> authorFxObservableList.add(AuthorConverter.convertAuthorToAuthorFx(author)));
+    }
+
+    public void saveBook() throws ApplicationException {
+        Book book = BookConverter.convertBookFxToBook(this.getBookFxObjectProperty());
+
+        CategoryDao categoryDao = new CategoryDao();
+        Category category = categoryDao.findById(Category.class, this.getBookFxObjectProperty().getCategoryFx().getId());
+        book.setCategory(category);
+
+        AuthorDao authorDao = new AuthorDao();
+        Author author = authorDao.findById(Author.class, this.getBookFxObjectProperty().getAuthorFx().getId());
+        book.setAuthor(author);
+
+        BookDao bookDao = new BookDao();
+        bookDao.createOrUpdate(book);
     }
 
     public BookFx getBookFxObjectProperty() {

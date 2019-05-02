@@ -63,7 +63,24 @@ public class BookController {
                         this.bookModel.getBookFxObjectProperty().authorFxProperty().isNull())));
     }
 
-    public void addBook() {
+    @FXML
+    private void addBook() {
         System.out.println(this.bookModel.getBookFxObjectProperty().toString());
+        try {
+            this.bookModel.saveBook();
+        } catch (ApplicationException e) {
+            DialogUtils.errorDialog(e.getMessage());
+        }
+        clearSelection();
+    }
+
+    private void clearSelection() {
+        this.categoryComboBox.getSelectionModel().clearSelection();
+        this.authorComboBox.getSelectionModel().clearSelection();
+        this.titleTextField.clear();
+        this.descTextArea.clear();
+        this.ratingSlider.setValue(this.ratingSlider.getMin());
+        this.isbnTextField.clear();
+        this.releaseDatePicker.getEditor().clear();
     }
 }
