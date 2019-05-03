@@ -1,17 +1,20 @@
 package com.mylibrary.controllers;
 
-import com.mylibrary.modelFx.AuthorFx;
-import com.mylibrary.modelFx.BookFx;
-import com.mylibrary.modelFx.BookListModel;
-import com.mylibrary.modelFx.CategoryFx;
+import com.mylibrary.modelFx.*;
 import com.mylibrary.utils.DialogUtils;
+import com.mylibrary.utils.FxmlUtils;
 import com.mylibrary.utils.exceptions.ApplicationException;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.time.LocalDate;
 
 public class BookListController {
@@ -38,6 +41,8 @@ public class BookListController {
     private TableColumn<BookFx, LocalDate> releaseColumn;
     @FXML
     public TableColumn<BookFx, BookFx> deleteColumn;
+    @FXML
+    private TableColumn<BookFx, BookFx> editColumn;
 
     private BookListModel bookListModel;
 
@@ -69,9 +74,10 @@ public class BookListController {
         this.isbnColumn.setCellValueFactory(cellData -> cellData.getValue().isbnProperty());
         this.releaseColumn.setCellValueFactory(cellData -> cellData.getValue().releaseDateProperty());
         this.deleteColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
+        this.editColumn.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue()));
 
         this.deleteColumn.setCellFactory(param -> new TableCell<>() {
-            Button button = createDeleteButton();
+            Button button = createButton("/icons/delete.png");
             @Override
             protected void updateItem(BookFx item, boolean empty) {
                 super.updateItem(item, empty);
@@ -89,11 +95,41 @@ public class BookListController {
                 }
             }
         });
+
+        this.editColumn.setCellFactory(param -> new TableCell<>() {
+            Button button = createButton("/icons/edit.png");
+            @Override
+            protected void updateItem(BookFx item, boolean empty) {
+                super.updateItem(item, empty);
+                if (empty) {
+                    setGraphic(null);
+                } else {
+                    setGraphic(button);
+                    button.setOnAction(actionEvent -> {
+                        FXMLLoader loader = FxmlUtils.getLoader("/fxml/AddBook.fxml");
+                        Scene scene = null;
+                        try {
+                            scene = new Scene(loader.load());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        BookController controller = loader.getController();
+                        controller.getBookModel().setBookFxObjectProperty(item);
+                        controller.initBindings();
+
+                        Stage stage = new Stage();
+                        stage.setScene(scene);
+                        stage.initModality(Modality.APPLICATION_MODAL);
+                        stage.showAndWait();
+                    });
+                }
+            }
+        });
     }
 
-    private Button createDeleteButton() {
+    private Button createButton(String path) {
         Button button = new Button();
-        button.setGraphic(new ImageView(new Image(this.getClass().getResource("/icons/delete.png").toString())));
+        button.setGraphic(new ImageView(new Image(this.getClass().getResource(path).toString())));
         return button;
     }
 

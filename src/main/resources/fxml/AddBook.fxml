@@ -47,6 +47,6 @@
             GridPane.rowIndex="4"/>
     <TextField fx:id="isbnTextField" GridPane.columnIndex="1" GridPane.rowIndex="5"/>
     <DatePicker fx:id="releaseDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="6"/>
-    <Button fx:id="addButton" onAction="#addBook" mnemonicParsing="false" text="%add.button" GridPane.columnIndex="1"
+    <Button fx:id="addButton" onAction="#addBook" mnemonicParsing="false" text="%save.button" GridPane.columnIndex="1"
             GridPane.rowIndex="7"/>
 </GridPane>

@@ -39,17 +39,17 @@ public class BookController {
         initBindings();
     }
 
-    private void initBindings() {
+    void initBindings() {
         this.categoryComboBox.setItems(this.bookModel.getCategoryFxObservableList());
         this.authorComboBox.setItems(this.bookModel.getAuthorFxObservableList());
 
-        this.bookModel.getBookFxObjectProperty().categoryFxProperty().bind(this.categoryComboBox.valueProperty());
-        this.bookModel.getBookFxObjectProperty().authorFxProperty().bind(this.authorComboBox.valueProperty());
-        this.bookModel.getBookFxObjectProperty().titleProperty().bind(this.titleTextField.textProperty());
-        this.bookModel.getBookFxObjectProperty().descriptionProperty().bind(this.descTextArea.textProperty());
-        this.bookModel.getBookFxObjectProperty().ratingProperty().bind(this.ratingSlider.valueProperty());
-        this.bookModel.getBookFxObjectProperty().isbnProperty().bind(this.isbnTextField.textProperty());
-        this.bookModel.getBookFxObjectProperty().releaseDateProperty().bind(this.releaseDatePicker.valueProperty());
+        this.authorComboBox.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().authorFxProperty());
+        this.categoryComboBox.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().categoryFxProperty());
+        this.titleTextField.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().titleProperty());
+        this.descTextArea.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().descriptionProperty());
+        this.ratingSlider.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().ratingProperty());
+        this.isbnTextField.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().isbnProperty());
+        this.releaseDatePicker.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().releaseDateProperty());
 
         this.addButton.disableProperty().bind(this.titleTextField.textProperty().isEmpty().or(
                 this.bookModel.getBookFxObjectProperty().categoryFxProperty().isNull().or(
@@ -75,5 +75,9 @@ public class BookController {
         this.ratingSlider.setValue(this.ratingSlider.getMin());
         this.isbnTextField.clear();
         this.releaseDatePicker.getEditor().clear();
+    }
+
+    BookModel getBookModel() {
+        return bookModel;
     }
 }
