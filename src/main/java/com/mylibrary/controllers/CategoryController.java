@@ -10,6 +10,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TreeView;
 
+import java.sql.SQLException;
+
 public class CategoryController {
 
     @FXML
@@ -59,7 +61,7 @@ public class CategoryController {
     public void deleteCategory() {
         try {
             this.categoryModel.deleteCategoryById();
-        } catch (ApplicationException e) {
+        } catch (ApplicationException | SQLException e) {
             DialogUtils.errorDialog(e.getMessage());
         }
     }

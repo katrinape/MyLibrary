@@ -6,35 +6,38 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.FlowPane?>
 
-<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWrapLength="1000.0" rowValignment="TOP" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.mylibrary.controllers.TopMenuController">
-    <ToggleButton mnemonicParsing="false" onAction="#openLibrary" prefHeight="40.0" prefWidth="150.0" text="%library">
+<FlowPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWrapLength="1000.0"
+          rowValignment="TOP" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1"
+          fx:controller="com.mylibrary.controllers.TopMenuController">
+
+    <ToggleButton mnemonicParsing="false" onAction="#openBookList" prefHeight="40.0" prefWidth="150.0" text="%book.list">
         <toggleGroup>
-            <ToggleGroup fx:id="toggleButtons" />
+            <ToggleGroup fx:id="toggleButtons"/>
         </toggleGroup>
     </ToggleButton>
-
-    <ToggleButton mnemonicParsing="false" onAction="#openBookList" prefHeight="40.0" prefWidth="150.0" text="%book.list" toggleGroup="$toggleButtons" />
-    <ToggleButton mnemonicParsing="false" onAction="#openStatistics" prefHeight="40.0" prefWidth="150.0" text="%stats" toggleGroup="$toggleButtons" />
-    <ToggleButton mnemonicParsing="false" onAction="#addBook" prefHeight="40.0" prefWidth="150.0" text="%book.add" toggleGroup="$toggleButtons">
+    <ToggleButton mnemonicParsing="false" onAction="#addBook" prefHeight="40.0" prefWidth="150.0" text="%book.add"
+                  toggleGroup="$toggleButtons">
         <graphic>
             <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../icons/add_book.png" />
+                <Image url="@../icons/add_book.png"/>
             </ImageView>
         </graphic>
     </ToggleButton>
 
-    <ToggleButton mnemonicParsing="false" onAction="#addCategory" prefHeight="40.0" prefWidth="150.0" text="%category.add" toggleGroup="$toggleButtons">
+    <ToggleButton mnemonicParsing="false" onAction="#addCategory" prefHeight="40.0" prefWidth="150.0" text="%category.add"
+                  toggleGroup="$toggleButtons">
         <graphic>
             <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../icons/category.png" />
+                <Image url="@../icons/category.png"/>
             </ImageView>
         </graphic>
     </ToggleButton>
 
-    <ToggleButton mnemonicParsing="false" onAction="#addAuthor" prefHeight="40.0" prefWidth="150.0" text="%author.add" toggleGroup="$toggleButtons">
+    <ToggleButton mnemonicParsing="false" onAction="#addAuthor" prefHeight="40.0" prefWidth="150.0" text="%author.add"
+                  toggleGroup="$toggleButtons">
         <graphic>
             <ImageView fitHeight="30.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../icons/author.png" />
+                <Image url="@../icons/author.png"/>
             </ImageView>
         </graphic>
     </ToggleButton>

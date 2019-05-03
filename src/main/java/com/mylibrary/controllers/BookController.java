@@ -36,7 +36,8 @@ public class BookController {
         } catch (ApplicationException e) {
             DialogUtils.errorDialog(e.getMessage());
         }
-        initBindings();
+        this.initBindings();
+        this.validate();
     }
 
     void initBindings() {
@@ -50,10 +51,15 @@ public class BookController {
         this.ratingSlider.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().ratingProperty());
         this.isbnTextField.textProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().isbnProperty());
         this.releaseDatePicker.valueProperty().bindBidirectional(this.bookModel.getBookFxObjectProperty().releaseDateProperty());
+    }
 
-        this.addButton.disableProperty().bind(this.titleTextField.textProperty().isEmpty().or(
-                this.bookModel.getBookFxObjectProperty().categoryFxProperty().isNull().or(
-                        this.bookModel.getBookFxObjectProperty().authorFxProperty().isNull())));
+    private void validate() {
+        this.addButton.disableProperty().bind(this.authorComboBox.valueProperty().isNull()
+                .or(this.categoryComboBox.valueProperty().isNull()
+                        .or(this.titleTextField.textProperty().isEmpty()
+                                .or(this.descTextArea.textProperty().isEmpty()
+                                        .or(this.isbnTextField.textProperty().isEmpty()
+                                                .or(this.releaseDatePicker.valueProperty().isNull()))))));
     }
 
     @FXML
@@ -61,13 +67,13 @@ public class BookController {
         System.out.println(this.bookModel.getBookFxObjectProperty().toString());
         try {
             this.bookModel.saveBook();
+            this.clearFields();
         } catch (ApplicationException e) {
             DialogUtils.errorDialog(e.getMessage());
         }
-        clearSelection();
     }
 
-    private void clearSelection() {
+    private void clearFields() {
         this.categoryComboBox.getSelectionModel().clearSelection();
         this.authorComboBox.getSelectionModel().clearSelection();
         this.titleTextField.clear();

@@ -4,10 +4,11 @@ import com.mylibrary.modelFx.AuthorFx;
 import com.mylibrary.modelFx.AuthorModel;
 import com.mylibrary.utils.DialogUtils;
 import com.mylibrary.utils.exceptions.ApplicationException;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.TextFieldTableCell;
+
+import java.sql.SQLException;
 
 public class AuthorController {
 
@@ -87,10 +88,10 @@ public class AuthorController {
         }
     }
 
-    public void deleteAuthor(ActionEvent actionEvent) {
+    public void deleteAuthor() {
         try {
             this.authorModel.deleteAuthor();
-        } catch (ApplicationException e) {
+        } catch (ApplicationException | SQLException e) {
             DialogUtils.errorDialog(e.getMessage());
         }
     }
